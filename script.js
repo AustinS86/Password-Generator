@@ -1,72 +1,58 @@
+// My list of various arrays I use throughout the JS.
+var generateBtn = document.querySelector("#generate");
 var passwordLength = 8 - 128;
-var pWord=[];
+var pWord = "";
 var specialChar = "!@#$%^&*()";
 var number = "0123456789";
 var lowercase = "abcdefghijklmnopqrstuvwxyz";
 var UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-var generateBtn = document.querySelector("#generate");
-
-function writePassword(){
-    var correctPW= getPW();
+// This function calls onto the getPW below that runs the questions needed to crate a password. If true than "if" will generate a password.
+function writePassword() {
+    var correctPW = getPW();
     var passwordText = document.querySelector("#password");
 
-    if (correctPW){
+    if (correctPW) {
         var newPassword = generatePassword();
         passwordText.value = newPassword;
-    }else{
+    } else {
         passwordText.value = "";
     }
-    
+
 }
-
-
-function generatePassword() {
-    var password= "";
-    for (var i = 0; i < passwordLength; i++) {
-         var randomWord = Math.floor(Math.random() * password.length);
-            password = password + pWord[randomWord];
-    }
-    return password;
-}
-
-
+//This function will run a series of questions that will determine what the pasword will be. I decided to use the "confirm" prompt so you wouldnt have to type in the box everytime. 
 function getPW() {
-     pWord="";
-     
-     passwordLength = parseInt(prompt("How many characters do you want your password to include? 8 - 128 characters"));
+    pWord = "";
 
-    if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128){
-        alert("Password length must be a at least 8 - 128 characters") ;
+    passwordLength = prompt("How many characters do you want your password to include? 8 - 128 characters");
+
+    if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+        alert("Password length must be a at least 8 - 128 characters");
         return false;
     }
-
-    if (confirm("Would you like to use special characters?")){
+    if (confirm("Would you like to use special characters? Ok = Yes/Cancel = No")) {
         pWord = pWord.concat(specialChar);
-       
     }
-
-    if (confirm("Would you like to use numbers?")) {
+    if (confirm("Would you like to use numbers? Ok = Yes/Cancel = No ")) {
         pWord = pWord.concat(number);
-       
-
     }
-
-    if (confirm("Would you like to use lowercase letters?")) {
+    if (confirm("Would you like to use lowercase characters? Ok = Yes/Cancel = No")) {
         pWord = pWord.concat(lowercase);
-       
-
     }
-
-    if (confirm("Would you like to use UPPERCASE letters?")) {
+    if (confirm("Would you like to use UPPERCASE characters? Ok = Yes/Cancel = No")) {
         pWord = pWord.concat(UPPERCASE);
-       
-
     }
-
+    return password;
+}
+// This function generates a password by using a for loop to determine the length of the password.
+function generatePassword() {
+    var password = "";
+    for (var i = 0; i < passwordLength; i++) {
+        var random = Math.floor(Math.random() * pWord.length);
+        password = password + pWord[random];
+    }
     return password;
 }
 
-// Add event listener to generate button
-
+// This will generate the password that we requested
 generateBtn.addEventListener("click", writePassword);
