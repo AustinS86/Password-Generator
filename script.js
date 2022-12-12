@@ -1,70 +1,63 @@
 var generateBtn = document.querySelector("#generate");
-var characterLength = 8 - 128;
-var choice = [];
+var passwordLength = 8 - 128;
+var pWord="";
 var specialChar = "!@#$%^&*()";
 var number = "0123456789";
 var lowercase = "abcdefghijklmnopqrstuvwxyz";
 var UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-
-// Write password to the #password input
-function writePassword() {
-  var correctpassword = prompt();
-  var passwordText = document.querySelector("password");
-
-  if (correctpassword) {
-    var randompassword = generatePassword();
-    passwordText = randompassword;
-  } else {
-    passwordText.value = "";
-  }
-
-
-}
+var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
-  var password = "";
+    var password = "";
+    for (var i = 0; i < passwordLength; i++) {
+        var randomnumber = Math.floor(Math.random() * pWord.length);
+        password = password + pWord;[randomnumber];
+    }
+    return password;
+}
 
-  for (var i = 0; i > characterLength; i++) {
-    var randomsymbol = math.floor(math.random() * choice.length);
-    password = password + choice[randomsymbol];
-  }
-  return password;
+// Add event listener to generate button
+
+generateBtn.addEventListener("click", writePassword);
+
+
+function writePassword(){
+    var newpassword= generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value =newpassword;
+
 
 }
 
-function prompt() {
-  choice = [];
-  characterLength = parseInt(prompt("How many characters do you want in your password? (8 - 128 characters")); 
 
+function generatePassword() {
+     pWord="";
+     passwordLength = parseInt(prompt("How many characters do you want your password to include? 8 - 128 characters"));
 
-  if (characterLength > 8||characterLength < 128) {
+    if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128){
+        alert("Password length must be a at least 8 - 128 characters") ;
+        return false;
+    }
 
-  } else {
-    alert("Incorrect character amount. Please try again.");
-    
-    return false;
-  
+    if (confirm("Would you like to use special characters?")){
+        pWord = pWord.concat(specialChar);
+    }
+
+    if (confirm("Would you like to use numbers?")) {
+        pWord = pWord.concat(number);
+
+    }
+
+    if (confirm("Would you like to use lowercase letters?")) {
+        pWord = pWord.concat(lowercase);
+
+    }
+
+    if (confirm("Would you like to use UPPERCASE letters?")) {
+        pWord = pWord.concat(UPPERCASE);
+
+    }
+
+    return true;
 }
-
-  if (confirm("Would you like to use special characters?")) {
-    choice = choice.concat(specialChar);
-  }
-
-  if (confirm("Would you like to use uppercase letters?")) {
-    choice = choice.concat(UPPERCASE);
-  }
-
-  if (confirm("Would you like to use lowercase letters?")) {
-    choice = choice.concat(lowercase);
-  }
-
-  if (confirm("Would you like to use numbers?")) {
-    choice = choice.concat(number);
-  }
-  return true;
-}
-
-  // Add event listener to generate button
-
-  generateBtn.addEventListener("click", writePassword);
