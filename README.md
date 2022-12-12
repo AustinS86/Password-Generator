@@ -17,4 +17,4 @@ change your current password due to sensitive data at work or if your account ev
 - https://austins86.github.io/Password-Generator/
 
 # Screenshot
-![Screenshot](Assets\Password-Generator-Screenshot.jpg)
+![Screenshot](https://github.com/AustinS86/Password-Generator/blob/main/Assets/Password-Generator-Screenshot.jpg)
