@@ -8,7 +8,7 @@ change your current password due to sensitive data at work or if your account ev
 ## How does the Password Generator create a password?
 
 - When you go to press the generate button it will ask you a series of questions.
-- It asks for how many characters you want in your password. The bigger the password the more secure them tend to be. 
+- It asks for how many characters you want in your password. The bigger the password the more secure they tend to be. 
 - It will ask you if you want to include special characters, numbers, Uppercase and lowercase letters.
 - A good practice would be to include as many different characters in your password as possible to make it more secure. 
 
